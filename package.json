@@ -1,5 +1,5 @@
 {
-  "name": "ChooChooTrain",
+  "name": "choochootrain",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -19,5 +19,6 @@
   "homepage": "https://github.com/gkarmo/ChooChooTrain#readme",
   "dependencies": {
     "moment": "^2.24.0"
-  }
+  },
+  "devDependencies": {}
 }

@@ -1,6 +1,10 @@
-var moment = require("moment");
+
 
 $(document).ready(function() {
+var moment = require("moment");
+
+console.log(moment());
+
   // create table
   var $table = $("<table>").addClass("table");
   $table
@@ -17,6 +21,11 @@ $(document).ready(function() {
 
   $("#add-train").on("click", function(event) {
     console.log("click");
+
+    
+    var firstTrain = '';
+    var nextArrival = moment().startOf(firstTrain).fromNow();
+
     var name = $("#train-name")
       .val()
       .trim();
