@@ -1,23 +1,21 @@
 
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBnA4nnPlyvzqiaMzwAfzbN_HMS6C11uf8",
+    authDomain: "choochootrain-17a0a.firebaseapp.com",
+    databaseURL: "https://choochootrain-17a0a.firebaseio.com",
+    projectId: "choochootrain-17a0a",
+    storageBucket: "",
+    messagingSenderId: "732377568440",
+    appId: "1:732377568440:web:f8573634369e4c6a5bd04d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  var db = firebase.database();
 
 $(document).ready(function() {
-var moment = require("moment");
 
-console.log(moment());
-
-  // create table
-  var $table = $("<table>").addClass("table");
-  $table
-    // thead
-    .append("<thead>")
-    .children("thead")
-    .append("<tr />")
-    .children("tr")
-    .append(
-      "<th>Train Name</th><th>Destination</th><th>Frequency</th><th>Next Arrival</th><th>Mins Away</th>"
-    );
-
-  $table.appendTo("#trains");
 
   $("#add-train").on("click", function(event) {
     console.log("click");
