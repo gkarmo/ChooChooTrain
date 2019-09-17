@@ -36,7 +36,7 @@
               Current Train Schedule
             </div>
             <div class="card-body">
-              <table class="table table-hover" id="trains-row">
+              <table class="table table-hover" id="trains-table">
                 <thead>
                   <tr>
                     <th>Train Name</th>
@@ -46,7 +46,8 @@
                     <th>Minutes Away</th>
                   </tr>
                 </thead>
-                <tbody id="trains"></tbody>
+                <tbody>                  
+                </tbody>
               </table>
             </div>
           </div>
@@ -64,14 +65,8 @@
               Add Train
             </div>
             <div class="card-body">
-              <p>Train Time</p>
-              <input
-                id="train-name"
-                type="text"
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-              />
+              <p>Train Name</p>
+              <input type="text" class="form-control" id="train-name">
               <br />
               <p>Destination</p>
               <input
@@ -80,7 +75,7 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-              />
+              >
               <br />
               <p>First Train Time</p>
               <input
@@ -89,7 +84,7 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-              />
+              >
               <br />
               <p>Frequency</p>
               <input
@@ -98,9 +93,9 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-              />
+              >
               <br />
-              <a href="#" class="btn btn-primary" id="add-train">Submit</a>
+              <button type="submit" class="btn btn-primary" id="add-train">Submit</button>
             </div>
           </div>
         </div>
