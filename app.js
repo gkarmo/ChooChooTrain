@@ -21,7 +21,7 @@ $("#add-new-train").on("click", function(event) {
   // Grabs user input
   var tName = $("#train-name").val().trim();
   var destination = $("#destination").val().trim();
-  var firstTrain = moment($("first-train").val().trim(), "hh:mm").format("X");
+  var firstTrain = moment($("first-train").val(), "HH:mm").format("X");
   var frequency = $("#frequency").val().trim();
 
   // Creates local "temporary" object for holding employee data
@@ -64,11 +64,18 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(firstTrain);
   console.log(frequency);
 
+  var timeDiff = moment().diff(moment.unix(firstTrain), "minutes") % frequency;
+
+  var minAway = frequency - timeDiff;
+
+  var nextArr = moment().add(minAway, "m").format("HH:mm");
+
   var newRow = $("<tr>").append(
     $("<td>").text(tName),
     $("<td>").text(destination),
-    $("<td>").text(firstTrain),
-    $("<td>").text(frequency)
+    $("<td>").text(frequency),
+    $("<td>").text(nextArr),
+    $("<td>").text(minAway)
   );
 
   $("#employee-table > tbody").append(newRow);
