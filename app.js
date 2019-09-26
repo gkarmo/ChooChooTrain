@@ -19,10 +19,16 @@ $("#add-new-train").on("click", function(event) {
   console.log("click");
 
   // Grabs user input
-  var tName = $("#train-name").val().trim();
-  var destination = $("#destination").val().trim();
-  var firstTrain = moment($("first-train").val(), "HH:mm").format("X");
-  var frequency = $("#frequency").val().trim();
+  var tName = $("#train-name")
+    .val()
+    .trim();
+  var destination = $("#destination")
+    .val()
+    .trim();
+  var firstTrain = $("#first-train").val();
+  var frequency = $("#frequency")
+    .val()
+    .trim();
 
   // Creates local "temporary" object for holding employee data
   var newTrain = {
@@ -32,14 +38,14 @@ $("#add-new-train").on("click", function(event) {
     freq: frequency
   };
 
+  // Logs everything to console
+  console.log(newTrain.name);
+  console.log(newTrain.dest);
+  console.log(newTrain.fTrain);
+  console.log(newTrain.freq);
+
   // Uploads employee data to the database
   database.ref().push(newTrain);
-
-  // Logs everything to console
-  console.log(tName.name);
-  console.log(destination.dest);
-  console.log(firstTrain.fTrain);
-  console.log(frequency.freq);
 
   alert("Train successfully added");
 
@@ -59,16 +65,23 @@ database.ref().on("child_added", function(childSnapshot) {
   var firstTrain = childSnapshot.val().fTrain;
   var frequency = childSnapshot.val().freq;
 
-  console.log(tName);
-  console.log(destination);
-  console.log(firstTrain);
-  console.log(frequency);
+  var timeArr = firstTrain.split(":");
+  var tTime = moment()
+    .hours(timeArr[0])
+    .minutes(timeArr[1]);
 
-  var timeDiff = moment().diff(moment.unix(firstTrain), "minutes") % frequency;
+  var minAway;
+  var nextArr;
 
-  var minAway = frequency - timeDiff;
-
-  var nextArr = moment().add(minAway, "m").format("HH:mm");
+  var timeDiff = moment().diff(tTime, "minutes");
+  console.log(timeDiff);
+  var tRemainder = timeDiff % frequency;
+  console.log(tRemainder);
+  minAway = frequency - tRemainder;
+  console.log(minAway);
+  nextArr = moment()
+    .add(minAway, "m")
+    .format("hh:mm A");
 
   var newRow = $("<tr>").append(
     $("<td>").text(tName),
@@ -80,5 +93,3 @@ database.ref().on("child_added", function(childSnapshot) {
 
   $("#employee-table > tbody").append(newRow);
 });
-
-
